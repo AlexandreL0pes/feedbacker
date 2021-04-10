@@ -1,0 +1,20 @@
+version: '3'
+services:
+  api:
+    container_name: api
+    build: ./backend
+    ports:
+      - "3000:3000"
+    environment:
+      - DEBUG:* 
+      - JWT_SECRET=sssshhhh
+  front:
+    build: ./dashboard
+    volumes: 
+    - ./dashboard:/dashboard
+    ports:
+      - "8080:8080"
+    container_name: front
+    volumes:
+       - ./dashboard:/dashboard
+       - /dashboard/node_modules
