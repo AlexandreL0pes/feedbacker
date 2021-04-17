@@ -2,7 +2,11 @@ const colors = require('tailwindcss/colors')
 const palette = require('./palette')
 
 module.exports = {
-  purge: [],
+  purge: [
+    './src/**/*.html',
+    './src/**/*.vue',
+    './src/**/*.jsx'
+  ],
   presets: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
@@ -75,15 +79,6 @@ module.exports = {
       pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       bounce: 'bounce 1s infinite'
     },
-    backdropBlur: (theme) => theme('blur'),
-    backdropBrightness: (theme) => theme('brightness'),
-    backdropContrast: (theme) => theme('contrast'),
-    backdropGrayscale: (theme) => theme('grayscale'),
-    backdropHueRotate: (theme) => theme('hueRotate'),
-    backdropInvert: (theme) => theme('invert'),
-    backdropOpacity: (theme) => theme('opacity'),
-    backdropSaturate: (theme) => theme('saturate'),
-    backdropSepia: (theme) => theme('sepia'),
     backgroundColor: (theme) => theme('colors'),
     backgroundImage: {
       none: 'none',
@@ -112,29 +107,6 @@ module.exports = {
       auto: 'auto',
       cover: 'cover',
       contain: 'contain'
-    },
-    blur: {
-      0: '0',
-      sm: '4px',
-      DEFAULT: '8px',
-      md: '12px',
-      lg: '16px',
-      xl: '24px',
-      '2xl': '40px',
-      '3xl': '64px'
-    },
-    brightness: {
-      0: '0',
-      50: '.5',
-      75: '.75',
-      90: '.9',
-      95: '.95',
-      100: '1',
-      105: '1.05',
-      110: '1.1',
-      125: '1.25',
-      150: '1.5',
-      200: '2'
     },
     borderColor: (theme) => ({
       ...theme('colors'),
@@ -169,15 +141,6 @@ module.exports = {
       inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
       none: 'none'
     },
-    contrast: {
-      0: '0',
-      50: '.5',
-      75: '.75',
-      100: '1',
-      125: '1.25',
-      150: '1.5',
-      200: '2'
-    },
     container: {},
     cursor: {
       auto: 'auto',
@@ -186,43 +149,12 @@ module.exports = {
       wait: 'wait',
       text: 'text',
       move: 'move',
-      help: 'help',
       'not-allowed': 'not-allowed'
     },
     divideColor: (theme) => theme('borderColor'),
     divideOpacity: (theme) => theme('borderOpacity'),
     divideWidth: (theme) => theme('borderWidth'),
-    dropShadow: {
-      sm: '0 1px 1px rgba(0,0,0,0.05)',
-      DEFAULT: ['0 1px 2px rgba(0, 0, 0, 0.1)', '0 1px 1px rgba(0, 0, 0, 0.06)'],
-      md: ['0 4px 3px rgba(0, 0, 0, 0.07)', '0 2px 2px rgba(0, 0, 0, 0.06)'],
-      lg: ['0 10px 8px rgba(0, 0, 0, 0.04)', '0 4px 3px rgba(0, 0, 0, 0.1)'],
-      xl: ['0 20px 13px rgba(0, 0, 0, 0.03)', '0 8px 5px rgba(0, 0, 0, 0.08)'],
-      '2xl': '0 25px 25px rgba(0, 0, 0, 0.15)',
-      none: '0 0 #0000'
-    },
     fill: { current: 'currentColor' },
-    grayscale: {
-      0: '0',
-      DEFAULT: '100%'
-    },
-    hueRotate: {
-      '-180': '-180deg',
-      '-90': '-90deg',
-      '-60': '-60deg',
-      '-30': '-30deg',
-      '-15': '-15deg',
-      0: '0deg',
-      15: '15deg',
-      30: '30deg',
-      60: '60deg',
-      90: '90deg',
-      180: '180deg'
-    },
-    invert: {
-      0: '0',
-      DEFAULT: '100%'
-    },
     flex: {
       1: '1 1 0%',
       auto: '1 1 auto',
@@ -238,9 +170,9 @@ module.exports = {
       DEFAULT: '1'
     },
     fontFamily: {
-      regular: ['RobotRegular'],
-      medium: ['RobotMedium'],
-      bold: ['RobotBold'],
+      regular: ['RobotoRegular'],
+      medium: ['RobotoMedium'],
+      bold: ['RobotoBold'],
       black: ['RobotoBlack'],
       sans: [
         'ui-sans-serif',
@@ -387,6 +319,17 @@ module.exports = {
       5: '5',
       6: '6',
       7: '7'
+    },
+    transformOrigin: {
+      center: 'center',
+      top: 'top',
+      'top-right': 'top right',
+      right: 'right',
+      'bottom-right': 'bottom right',
+      bottom: 'bottom',
+      'bottom-left': 'bottom left',
+      left: 'left',
+      'top-left': 'top left'
     },
     gridTemplateColumns: {
       none: 'none',
@@ -646,13 +589,6 @@ module.exports = {
       90: '90deg',
       180: '180deg'
     },
-    saturate: {
-      0: '0',
-      50: '.5',
-      100: '1',
-      150: '1.5',
-      200: '2'
-    },
     scale: {
       0: '0',
       50: '.5',
@@ -664,10 +600,6 @@ module.exports = {
       110: '1.1',
       125: '1.25',
       150: '1.5'
-    },
-    sepia: {
-      0: '0',
-      DEFAULT: '100%'
     },
     skew: {
       '-12': '-12deg',
@@ -696,18 +628,8 @@ module.exports = {
     },
     textColor: (theme) => theme('colors'),
     textOpacity: (theme) => theme('opacity'),
-    transformOrigin: {
-      center: 'center',
-      top: 'top',
-      'top-right': 'top right',
-      right: 'right',
-      'bottom-right': 'bottom right',
-      bottom: 'bottom',
-      'bottom-left': 'bottom left',
-      left: 'left',
-      'top-left': 'top left'
-    },
-    transitionDelay: {
+    transitionDuration: {
+      DEFAULT: '150ms',
       75: '75ms',
       100: '100ms',
       150: '150ms',
@@ -717,8 +639,7 @@ module.exports = {
       700: '700ms',
       1000: '1000ms'
     },
-    transitionDuration: {
-      DEFAULT: '150ms',
+    transitionDelay: {
       75: '75ms',
       100: '100ms',
       150: '150ms',
@@ -731,8 +652,7 @@ module.exports = {
     transitionProperty: {
       none: 'none',
       all: 'all',
-      DEFAULT:
-        'background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter',
+      DEFAULT: 'background-color, border-color, color, fill, stroke, opacity, box-shadow, transform',
       colors: 'background-color, border-color, color, fill, stroke',
       opacity: 'opacity',
       shadow: 'box-shadow',
@@ -830,48 +750,31 @@ module.exports = {
     alignSelf: ['responsive'],
     animation: ['responsive'],
     appearance: ['responsive'],
-    backdropBlur: ['responsive'],
-    backdropBrightness: ['responsive'],
-    backdropContrast: ['responsive'],
-    backdropDropShadow: ['responsive'],
-    backdropFilter: ['responsive'],
-    backdropGrayscale: ['responsive'],
-    backdropHueRotate: ['responsive'],
-    backdropInvert: ['responsive'],
-    backdropSaturate: ['responsive'],
-    backdropSepia: ['responsive'],
     backgroundAttachment: ['responsive'],
-    backgroundBlendMode: ['responsive'],
     backgroundClip: ['responsive'],
     backgroundColor: ['responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus'],
     backgroundImage: ['responsive'],
-    backgroundOpacity: ['responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus'],
+    backgroundOpacity: ['responsive', 'group-hover', 'focus-within', 'hover', 'focus'],
     backgroundPosition: ['responsive'],
     backgroundRepeat: ['responsive'],
     backgroundSize: ['responsive'],
-    blur: ['responsive'],
     borderCollapse: ['responsive'],
     borderColor: ['responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus'],
-    borderOpacity: ['responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus'],
+    borderOpacity: ['responsive', 'group-hover', 'focus-within', 'hover', 'focus'],
     borderRadius: ['responsive'],
     borderStyle: ['responsive'],
     borderWidth: ['responsive'],
-    boxDecorationBreak: ['responsive'],
     boxShadow: ['responsive', 'group-hover', 'focus-within', 'hover', 'focus'],
     boxSizing: ['responsive'],
-    brightness: ['responsive'],
     clear: ['responsive'],
     container: ['responsive'],
-    contrast: ['responsive'],
     cursor: ['responsive'],
     display: ['responsive'],
     divideColor: ['responsive', 'dark'],
-    divideOpacity: ['responsive', 'dark'],
+    divideOpacity: ['responsive'],
     divideStyle: ['responsive'],
     divideWidth: ['responsive'],
-    dropShadow: ['responsive'],
     fill: ['responsive'],
-    filter: ['responsive'],
     flex: ['responsive'],
     flexDirection: ['responsive'],
     flexGrow: ['responsive'],
@@ -886,7 +789,6 @@ module.exports = {
     fontWeight: ['responsive'],
     gap: ['responsive'],
     gradientColorStops: ['responsive', 'dark', 'hover', 'focus'],
-    grayscale: ['responsive'],
     gridAutoColumns: ['responsive'],
     gridAutoFlow: ['responsive'],
     gridAutoRows: ['responsive'],
@@ -899,10 +801,7 @@ module.exports = {
     gridTemplateColumns: ['responsive'],
     gridTemplateRows: ['responsive'],
     height: ['responsive'],
-    hueRotate: ['responsive'],
     inset: ['responsive'],
-    invert: ['responsive'],
-    isolation: ['responsive'],
     justifyContent: ['responsive'],
     justifyItems: ['responsive'],
     justifySelf: ['responsive'],
@@ -915,7 +814,6 @@ module.exports = {
     maxWidth: ['responsive'],
     minHeight: ['responsive'],
     minWidth: ['responsive'],
-    mixBlendMode: ['responsive'],
     objectFit: ['responsive'],
     objectPosition: ['responsive'],
     opacity: ['responsive', 'group-hover', 'focus-within', 'hover', 'focus'],
@@ -928,19 +826,17 @@ module.exports = {
     placeItems: ['responsive'],
     placeSelf: ['responsive'],
     placeholderColor: ['responsive', 'dark', 'focus'],
-    placeholderOpacity: ['responsive', 'dark', 'focus'],
+    placeholderOpacity: ['responsive', 'focus'],
     pointerEvents: ['responsive'],
     position: ['responsive'],
     resize: ['responsive'],
     ringColor: ['responsive', 'dark', 'focus-within', 'focus'],
     ringOffsetColor: ['responsive', 'dark', 'focus-within', 'focus'],
     ringOffsetWidth: ['responsive', 'focus-within', 'focus'],
-    ringOpacity: ['responsive', 'dark', 'focus-within', 'focus'],
+    ringOpacity: ['responsive', 'focus-within', 'focus'],
     ringWidth: ['responsive', 'focus-within', 'focus'],
     rotate: ['responsive', 'hover', 'focus'],
-    saturate: ['responsive'],
     scale: ['responsive', 'hover', 'focus'],
-    sepia: ['responsive'],
     skew: ['responsive', 'hover', 'focus'],
     space: ['responsive'],
     stroke: ['responsive'],
@@ -949,7 +845,7 @@ module.exports = {
     textAlign: ['responsive'],
     textColor: ['responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus'],
     textDecoration: ['responsive', 'group-hover', 'focus-within', 'hover', 'focus'],
-    textOpacity: ['responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus'],
+    textOpacity: ['responsive', 'group-hover', 'focus-within', 'hover', 'focus'],
     textOverflow: ['responsive'],
     textTransform: ['responsive'],
     transform: ['responsive'],
