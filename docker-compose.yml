@@ -10,11 +10,8 @@ services:
       - JWT_SECRET=sssshhhh
   front:
     build: ./dashboard
-    volumes: 
-    - ./dashboard:/dashboard
     ports:
       - "8080:8080"
     container_name: front
     volumes:
-       - ./dashboard:/dashboard
-       - /dashboard/node_modules
+      - ./dashboard:/dashboard
