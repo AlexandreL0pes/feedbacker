@@ -42,9 +42,13 @@
         </span>
       </label>
 
-      <button :disabled="state.isLoading" type="submit" :class="{'opacity-50': state.isLoading}"
+      <button
+        :disabled="state.isLoading" type="submit" :class="{'opacity-50': state.isLoading}"
         class="px-8 py-3 mt-10 text-2xl font-bold text-white rounded-full bg-brand-main focus:outline-none transition-all duration-150"
-      >Enviar</button>
+      >
+        <icon v-if="status.isLoading" name="loading" class="animate-spin"/>
+        <span v-else >Entrar</span>
+      </button>
     </form>
   </div>
 </template>
@@ -53,18 +57,27 @@
 import { reactive } from 'vue'
 import { useField } from 'vee-validate'
 import useModal from '../../hooks/useModal'
+import { useRouter } from 'vue-router'
+import { useToast } from 'vue-toastification'
+import Icon from '../Icon/Index'
 import { validateEmptyAndLength3, validateEmptyAndEmail } from '../../utils/validators'
+import services from '../../services'
 
 export default {
+  components: {
+    Icon
+  },
   setup () {
     const modal = useModal()
+    const router = useRouter()
+    const toast = useToast()
 
     const { value: emailValue, errorMessage: emailErrorMessage } = useField('email', validateEmptyAndEmail)
 
     const { value: passwordValue, errorMessage: passwordErrorMessage } = useField('password', validateEmptyAndLength3)
 
     const state = reactive({
-      hasErros: false,
+      hasErrors: false,
       isLoading: false,
       email: {
         value: emailValue,
@@ -76,7 +89,42 @@ export default {
       }
     })
 
-    function handleSubmit () {}
+    async function handleSubmit () {
+      try {
+        toast.clear()
+        state.isLoading = true
+        const { data, errors } = await services.auth.login({
+          email: state.email.value,
+          password: state.password.value
+        })
+
+        if (!errors) {
+          window.localStorage.setItem('token', data.token)
+          router.push({ name: 'Feedbacks' })
+          modal.close()
+
+          state.isLoading = false
+          return
+        }
+
+        if (errors.status === 404) {
+          toast.error('E-mail não encontrado')
+        }
+
+        if (errors.status === 401) {
+          toast.error('E-mail ou senha inválidos')
+        }
+
+        if (errors.status === 400) {
+          toast.error('Ocorreu um erro ao fazer o login')
+        }
+        state.isLoading = false
+      } catch (error) {
+        state.isLoading = false
+        state.hasErrors = !!error
+        toast.error('Ocorreu um erro ao fazer o login')
+      }
+    }
     return {
       state,
       handleSubmit,
