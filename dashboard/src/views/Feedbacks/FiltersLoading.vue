@@ -1,5 +1,5 @@
 <template>
-  <content-loader 
+  <content-loader
     class="flex flex-col items-center rounded"
     width="100%"
     height="300px"
