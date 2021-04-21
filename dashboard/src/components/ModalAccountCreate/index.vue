@@ -77,7 +77,7 @@ import { useField } from 'vee-validate'
 import useModal from '../../hooks/useModal'
 import { useRouter } from 'vue-router'
 import { useToast } from 'vue-toastification'
-import Icon from '../Icon/Index'
+import Icon from '../Icon'
 import { validateEmptyAndLength3, validateEmptyAndEmail } from '../../utils/validators'
 import services from '../../services'
 
