@@ -1,1 +1,2 @@
 .devcontainer/
+dashboard/tests/*/*/__snapshots__/
