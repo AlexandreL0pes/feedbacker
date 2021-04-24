@@ -1,3 +1,4 @@
 .devcontainer/
 dashboard/tests/*/*/__snapshots__/
 dashboard/tests/unit/*/*/__snapshots__/*
+dashboard/tests/e2e/cypress/videos/*
