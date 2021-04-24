@@ -29,7 +29,8 @@ export const routes = [
   {
     path: '/:pathMatch(.*)*',
     redirect: {
-      name: 'Home'
+      name: 'Home',
+      component: Home
     }
   }
 ]
