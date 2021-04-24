@@ -13,7 +13,7 @@ describe('Credentials', () => {
     cy.url().should('include', '/feedbacks')
 
     cy.wait(4000)
-    cy.visit(`/credentials`)
+    cy.visit('/credentials')
     cy.wait(2000)
 
     // Get value from element
