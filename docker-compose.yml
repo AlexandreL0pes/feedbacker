@@ -10,8 +10,21 @@ services:
       - JWT_SECRET=sssshhhh
   front:
     build: ./dashboard
+    command: "yarn run serve"
     ports:
       - "8080:8080"
     container_name: front
     volumes:
       - ./dashboard:/dashboard
+  cypress:
+    image: "cypress/included:4.4.0"
+    depends_on:
+      - front
+      - api
+    environment:
+      - CYPRESS_VIDEO=false
+      - CYPRESS_baseUrl=http://localhost:8080
+    working_dir: /e2e
+    network_mode: "host"
+    volumes:
+      - ./dashboard/tests/e2e:/e2e
